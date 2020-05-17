@@ -1,11 +1,15 @@
-language: node_js
-
+language: java
 sudo: false
-
-node_js:
-  - '10'
-
-install: yarn install
-
-script:
-  - yarn run test
+jdk:
+- openjdk8
+services:
+- docker
+before_install:
+- echo "before_install"
+- docker pull amazon/dynamodb-local
+- docker run -d -p 8000:8000 amazon/dynamodb-local
+- docker ps -a
+env:
+  global:
+  - secure: TQ4vqQUSSUiN6WEZavA6PoNCdwhdUgFfWBTAW6hlOSyIAO+eiG+pOF+o9Y5Kfgmx5m8mkbUobdP/3WqRUinY4BoWOw1UcmtV6R8GOXXMO8SpYPWEdfGMI4AVXMe7KFTrXyb/9m+yavp0QP5Z/u/g+QJ/CaXr5uqJGZEeV6YcK12vZBf4/Vf5VQnfg+vdoqz2jnM6ITGVaXrKXwTCTDvZT899vEppr5dXfl0Sa5Rs2Kp34FDiVyVL5EN2ivY+oWKbmXXOg7yZRd5zoAMh/Lr0VLNtolcSNcA8OxRj/UbYlnkN8x8bGqeyYCQBtZVz/zU5KfWaMeUwReQP8QLt+W87v3H3XJJ1k0Am2Cj6Ebd0H8+rOgWcBwYa3Eu01t6cOs0A/yf0t6J6FQ0juuts1LA7/JCCtcgiITSGrh9jY7JeRxtCCYHp9FGY5NxZdHEAyv0ZxtqSnyzauiUhoctGKzKlOigF/SaO1EQPbmZYlvDZeGRQ1R1DVNm/QafmHD4ELOSKwOxZnuGTnBCPtidO5O4sURnjQcSbqdDkaaqD3Ze5Pxc8nc3EFXYwnH40dtbSbGS1kkChPBIUhmu4MB3Hy9MEBgcwGlofIcq+DIoHZ6WdlpEvE0SNoTYoYimCReDbTzHyVv9FwuRzGmTY/ueUknGgjMYrM21K2zqFYoIbtEVcLMI=
+  - secure: gBVlRggx9QaNUUL5MkBIqH2+EteOQtWhL9YXQzU2rbFVZMPMqi+CPo8x5A/vfGu+LiwUPwu1F+rOUzzpf01xGUn0ATZNznAlcphmkx2AWivCeskwVCnyzHeObtviU10P93TqaVXKGFhbOpGKbfWF29dkKlEMl50J4zf5qfmrGq5xLuNxzNzkvEDkga1npVUc/02LsDUC/QTUpWM1RUyRDj75jVRFRVhI70pQi1XEzeG/1nZaqN20bdV3XtS1+ZHUT3jNd4sml4E3ufWRUkfGjRfIB14SzpiTyxfqtg0FT/HmQXoUqIX+174mb4JXslnkTAOnycJFHuiWb5NwPvlW2/o1kj3fFpgBE+uA4K4/xPWtGBfZ7yWzg7O2RJq3p9605BIaCZvgDG4YSTuruCD4XDS64aR4h3Qg9A4Y5mNkhyXtrFfOw/yGWP/3ts/9MGblXUfcrwpYifRHKZimPikl/GDSsOodJAH0U3+IDmxQKLy9sZFIZ4Ex9ZaUKhMya6eUVU3etAQsjhiI5EVp41jamM2P0KZqY/QAHp5HmHppMebddLFnGTrABKyP1+KFn4mcc5nU9PeGgvMLBjVyVBH5g+dAYd4RhVxPF9nz10eaPcZ+UzCQuw/NgkX3udc9a2+To1NMZaZJEs0py75YO7nv7l8cKss+5gEm7NsE1U8Hbd8=
