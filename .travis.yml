@@ -5,7 +5,10 @@ jdk:
 services:
 - docker
 before_install:
+
 - echo "before_install"
+- export AWS_ACCESS_KEY_ID=ThisIsTheAccessKeyId
+- export AWS_SECRET_ACCESS_KEY=ThisIsRequiredButNotUsed
 - docker pull amazon/dynamodb-local
 - docker run -d -p 8000:8000 amazon/dynamodb-local
 - docker ps -a
