@@ -1,0 +1,20 @@
+name: jCasbin-DynamoDB-Adapter-CI-Testing
+
+on:
+  push:
+    branches: [*]
+  pull_request:
+    branches: [*]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - run: |
+      echo "start"
+      docker pull amazon/dynamodb-local
+      docker run -d -p 8000:8000 amazon/dynamodb-local
+      docker ps -a
+      echo "end"
